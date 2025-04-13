@@ -1,0 +1,50 @@
+#    _               _              _ _                     
+#   | |__   __ _ ___| |__      __ _| (_) __ _ ___  ___  ___ 
+#   | '_ \ / _` / __| '_ \    / _` | | |/ _` / __|/ _ \/ __|
+#   | |_) | (_| \__ \ | | |  | (_| | | | (_| \__ \  __/\__ \
+#   |_.__/ \__,_|___/_| |_|___\__,_|_|_|\__,_|___/\___||___/
+#                        |_____|                            
+
+# Définition d'alias pour Bash
+#------------------------------
+
+alias bat='batcat'
+alias cdbk='cd $OLDPWD'
+alias dps='docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}" -a'
+alias eb='clear -x && exec bash'
+alias extip4='curl -4 icanhazip.com'
+alias dufm='duf --hide-fs vfat,tmpfs,devtmpfs'
+alias gpa='cd /home/$USER/git_repo/ && find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \; && cd'
+# alias nano='nano -mql'
+alias rbt='sudo reboot'
+alias ssha='eval $(ssh-agent) && ssh-add'
+
+# Alias pour eza
+alias eza='eza -h --icons'
+
+# Gere l'exception 'git'. Il semble que les options concernant 'git' sont desactivees dans eza version ARM.
+if [ $(dpkg --print-architecture) == "amd64" ]; then
+	alias ezal='eza -l --git --git-repos'
+else
+	alias ezal='eza -l'
+fi
+alias ezaa='eza -a'
+alias ezala='ezal -a'
+
+# Alias pour nala
+alias nupdate='sudo nala update'
+alias ninstall='sudo nala install'
+alias nremove='sudo nala remove'
+alias npurge='sudo nala purge'
+
+# Alias pour la mise à jour de Calibre s'il est installé
+if [ -f /usr/bin/calibre ]; then
+	alias calup='wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin'
+fi
+
+# Alias pour l'arret du systeme
+if [ -f /usr/local/bin/xSoft.sh ]; then
+	alias sdn='sudo /usr/local/bin/xSoft.sh 0 27'
+else
+	alias sdn='sudo shutdown now'
+fi
